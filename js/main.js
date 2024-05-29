@@ -14,20 +14,21 @@ var nome = tdNome.textContent;
 var peso = tdPeso.textContent;
 var altura = tdAltura.textContent;
 var imcCalculado = peso / (altura * 2);
+var imc;
 
 var ehPesoValido = true;
 var ehAlturaValida = true;
 
-if (peso < 0 || peso > 1000) {
-    alert(`O peso: ${peso} é inválido!`);
+if (peso <= 0 || peso >= 1000) {
+    imc = tdImc.textContent = `O peso: ${peso} é inválido!`;
     ehPesoValido = false;
 }
 
-if (altura < 1.00 || altura > 3.00) {
-    alert(`A altura: ${altura} é inválida!`);
+if (altura <= 0 || altura >= 3.00) {
+    imc = tdImc.textContent = `A altura: ${altura} é inválida!`;
     ehAlturaValida = false;
 }
 
 if (ehPesoValido && ehAlturaValida) {
-    var imc = tdImc.textContent = imcCalculado;
+    imc = tdImc.textContent = imcCalculado;
 }
