@@ -41,6 +41,5 @@ for (let i = 0; i < pacientes.length; i++) {
 }
 
 function marcarPacienteInvalido(paciente) {
-    paciente.style.backgroundColor = 'lightCoral';
-    paciente.style.color = 'white';
+    paciente.classList.add("paciente-invalido");
 }
