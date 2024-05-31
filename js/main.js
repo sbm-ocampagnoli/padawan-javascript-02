@@ -26,13 +26,13 @@ for (let i = 0; i < pacientes.length; i++) {
     if (peso <= 0 || peso >= 1000) {
         imc = tdImc.textContent = `O peso: ${peso} é inválido!`;
         ehPesoValido = false;
-        marcarPacienteInvalido(paciente);
+        destacarPacienteInvalido(paciente);
     }
 
     if (altura <= 0 || altura >= 3.00) {
         imc = tdImc.textContent = `A altura: ${altura} é inválida!`;
         ehAlturaValida = false;
-        marcarPacienteInvalido(paciente);
+        destacarPacienteInvalido(paciente);
     }
 
     if (ehPesoValido && ehAlturaValida) {
@@ -40,6 +40,6 @@ for (let i = 0; i < pacientes.length; i++) {
     }
 }
 
-function marcarPacienteInvalido(paciente) {
+function destacarPacienteInvalido(paciente) {
     paciente.classList.add("paciente-invalido");
 }
