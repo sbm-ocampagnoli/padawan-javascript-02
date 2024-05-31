@@ -36,8 +36,15 @@ for (let i = 0; i < pacientes.length; i++) {
     }
 
     if (ehPesoValido && ehAlturaValida) {
-        imc = tdImc.textContent = imcCalculado.toFixed(2);
+        tdImc.textContent = calcularIMC(peso, altura);
     }
+}
+
+function calcularIMC(peso, altura) {
+    let imc;
+    imc = peso / (altura * altura);
+    return imc.toFixed(2);
+
 }
 
 function destacarPacienteInvalido(paciente) {
