@@ -4,10 +4,8 @@ adicionarPacienteBtn.addEventListener("click", function (event) {
     event.preventDefault();
 
     var form = document.querySelector('#form-adiciona');
-    var nome = form.nome.value;
-    var peso = form.peso.value;
-    var altura = form.altura.value;
-    var gordura = form.gordura.value;
+
+    var paciente = obterPacienteDoFormulario(form);
 
     var pacienteTr = document.createElement("tr");
 
@@ -33,3 +31,16 @@ adicionarPacienteBtn.addEventListener("click", function (event) {
 
     tabela.appendChild(pacienteTr);
 });
+
+function obterPacienteDoFormulario(form) {
+
+    const paciente = {
+        nome: form.nome.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value,
+        imc: calcularIMC(form.peso.value, form.altura.value)
+    };
+
+    return paciente;
+}
