@@ -7,29 +7,12 @@ adicionarPacienteBtn.addEventListener("click", function (event) {
 
     var paciente = obterPacienteDoFormulario(form);
 
-    var pacienteTr = document.createElement("tr");
+    var pacienteTr = criarTr(paciente);
 
-    var nomeTd = document.createElement("td");
-    var pesoTd = document.createElement("td");
-    var alturaTd = document.createElement("td");
-    var gorduraTd = document.createElement("td");
-    var imcTd = document.createElement("td");
+    adicionarPacienteNaTabela(pacienteTr);
 
-    nomeTd.textContent = nome;
-    pesoTd.textContent = peso;
-    alturaTd.textContent = altura;
-    gorduraTd.textContent = gordura;
-    imcTd.textContent = calcularIMC(peso, altura);
+    form.reset();
 
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
-
-    var tabela = document.querySelector("#tabela-pacientes");
-
-    tabela.appendChild(pacienteTr);
 });
 
 function obterPacienteDoFormulario(form) {
@@ -43,4 +26,35 @@ function obterPacienteDoFormulario(form) {
     };
 
     return paciente;
+}
+
+function criarTr(paciente) {
+
+    var pacienteTr = document.createElement("tr");
+
+    pacienteTr.classList.add('paciente');
+
+    pacienteTr.appendChild(montarTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(montarTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(montarTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(montarTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(montarTd(paciente.imc, "info-imc"));
+
+    return pacienteTr;
+}
+
+function pegarTabelaDePacientes() {
+    return document.querySelector("#tabela-pacientes");
+}
+
+function adicionarPacienteNaTabela(pacienteTr) {
+    let tabela = pegarTabelaDePacientes();
+    tabela.appendChild(pacienteTr);
+}
+
+function montarTd(dado, classe) {
+    var td = document.createElement("td");
+    td.textContent = dado;
+    td.classList.add(classe);
+    return td;
 }
