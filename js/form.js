@@ -7,8 +7,11 @@ adicionarPacienteBtn.addEventListener("click", function (event) {
 
     var paciente = obterPacienteDoFormulario(form);
 
-    if (!validarPaciente(paciente)) {
-        console.log(paciente);
+    var erro = validarPaciente(paciente);
+
+    if (erro.length > 0) {
+        var mensagemDeErro = document.querySelector('#mensagem-erro');
+        mensagemDeErro.textContent += erro;
         return;
     }
 
@@ -66,9 +69,13 @@ function montarTd(dado, classe) {
 }
 
 function validarPaciente(paciente) {
-    if (validarPeso(paciente.peso) && validarAltura(paciente.altura)) {
+    if (!ehPesoValido(paciente.peso)) {
+        return `O peso do paciente: ${JSON.stringify(paciente.nome)} é inválido!`;
+    }
+    if (!ehAlturaValida(paciente.altura)) {
+        return `A altura do paciente: ${JSON.stringify(paciente.nome)} é inválido!`;
+    }
+    else {
         return true;
     }
-
-    return false;
 }

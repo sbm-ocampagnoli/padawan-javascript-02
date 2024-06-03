@@ -20,27 +20,24 @@ for (let i = 0; i < pacientes.length; i++) {
     var imcCalculado = peso / (altura * 2);
     var imc;
 
-    var ehPesoValido = true;
-    var ehAlturaValida = true;
-
-    if (!validarPeso(peso)) {
+    if (!ehPesoValido(peso)) {
         imc = tdImc.textContent = `O peso: ${peso} é inválido!`;
-        ehPesoValido = false;
         destacarPacienteInvalido(paciente);
     }
 
-    if (!validarAltura(altura)) {
+    if (!ehAlturaValida(altura)) {
         imc = tdImc.textContent = `A altura: ${altura} é inválida!`;
-        ehAlturaValida = false;
         destacarPacienteInvalido(paciente);
     }
 
-    if (ehPesoValido && ehAlturaValida) {
+    else {
         tdImc.textContent = calcularIMC(peso, altura);
     }
+
+
 }
 
-function validarPeso(peso) {
+function ehPesoValido(peso) {
     let pesoValido = (peso > 0 && peso <= 999);
 
     if (pesoValido) {
@@ -50,7 +47,7 @@ function validarPeso(peso) {
     return false;
 }
 
-function validarAltura(altura) {
+function ehAlturaValida(altura) {
     let alturaValida = (altura > 0 && altura <= 3.00);
 
     if (alturaValida) {
