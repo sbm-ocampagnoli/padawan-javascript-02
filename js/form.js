@@ -7,6 +7,11 @@ adicionarPacienteBtn.addEventListener("click", function (event) {
 
     var paciente = obterPacienteDoFormulario(form);
 
+    if (!validarPaciente(paciente)) {
+        console.log(paciente);
+        return;
+    }
+
     var pacienteTr = criarTr(paciente);
 
     adicionarPacienteNaTabela(pacienteTr);
@@ -56,5 +61,14 @@ function montarTd(dado, classe) {
     var td = document.createElement("td");
     td.textContent = dado;
     td.classList.add(classe);
+
     return td;
+}
+
+function validarPaciente(paciente) {
+    if (validarPeso(paciente.peso) && validarAltura(paciente.altura)) {
+        return true;
+    }
+
+    return false;
 }
