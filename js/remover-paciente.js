@@ -6,6 +6,11 @@ tabela.addEventListener('dblclick', function (event) {
     let paciente = elementoAlvo.parentNode;
 
     if (paciente.tagName == 'TR'); {
-        paciente.remove();
+
+        paciente.classList.add("fadeOut");
+        setTimeout(() => {
+            paciente.remove();
+        }, 500);
+
     }
 });
