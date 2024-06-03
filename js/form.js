@@ -7,6 +7,13 @@ adicionarPacienteBtn.addEventListener("click", function (event) {
 
     var paciente = obterPacienteDoFormulario(form);
 
+    var mensagemDeErros = validarPaciente(paciente);
+
+    if (mensagemDeErros.length > 0) {
+        exibirMensagensDeErro(mensagemDeErros);
+        return;
+    }
+
     var pacienteTr = criarTr(paciente);
 
     adicionarPacienteNaTabela(pacienteTr);
@@ -56,5 +63,43 @@ function montarTd(dado, classe) {
     var td = document.createElement("td");
     td.textContent = dado;
     td.classList.add(classe);
+
     return td;
+}
+
+function validarPaciente(paciente) {
+
+    let erros = [];
+
+    if (!ehPesoValido(paciente.peso)) {
+        erros.push(`O peso do(a) paciente: ${JSON.stringify(paciente.nome)} é inválido!`);
+    }
+    if (!ehAlturaValida(paciente.altura)) {
+        erros.push(`A altura do(a) paciente: ${JSON.stringify(paciente.nome)} é inválida!`);
+    }
+
+    return erros;
+}
+
+function exibirMensagensDeErro(erros) {
+
+    var listaNaoOrdenada = pegarListaDeMensagemDeErro();
+
+    erros.forEach(erro => {
+
+        let itemDoErro = document.createElement("li");
+
+        itemDoErro.setAttribute('id', "mensagem-erro")
+        let paragrafroDoItemDoErro = document.createElement("p");
+        paragrafroDoItemDoErro.textContent = erro;
+        paragrafroDoItemDoErro.setAttribute('id', "conteudo-erro");
+
+        itemDoErro.appendChild(paragrafroDoItemDoErro);
+
+        listaNaoOrdenada.appendChild(itemDoErro);
+    });
+}
+
+function pegarListaDeMensagemDeErro() {
+    return document.querySelector("#mensagens-erro");
 }
