@@ -153,3 +153,8 @@ button:disabled {
 	text-transform: uppercase;
 	text-align: justify;
 }
+
+.fadeOut {
+	opacity: 0;
+	transition: 0.5s;
+}
