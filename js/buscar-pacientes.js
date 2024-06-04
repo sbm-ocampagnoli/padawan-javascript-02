@@ -7,16 +7,29 @@ botaDeBuscar.addEventListener('click', function () {
     xhr.open("GET", "https://raw.githubusercontent.com/loresgarcia/Pacientes-API/master/pacientes.json");
 
     xhr.addEventListener('load', function () {
-        var reponse = xhr.responseText;
 
-        var novosPacientes = JSON.parse(reponse);
+        var erroAjax = document.querySelector('#erro-ajax');
 
-        novosPacientes.forEach(novoPaciente => {
+        if (xhr.status == 200) {
 
-            var novoPacienteTr = criarTr(novoPaciente);
+            var reponse = xhr.responseText;
 
-            adicionarPacienteNaTabela(novoPacienteTr);
-        });
+            var novosPacientes = JSON.parse(reponse);
+
+            novosPacientes.forEach(novoPaciente => {
+
+                var novoPacienteTr = criarTr(novoPaciente);
+
+                adicionarPacienteNaTabela(novoPacienteTr);
+            });
+        }
+        else {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+            erroAjax.classList.remove("invisivel");
+            erroAjax.textContent = "Ocorreu um erro na busca!"
+        }
+
     });
 
     xhr.send();
