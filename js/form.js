@@ -89,10 +89,10 @@ function exibirMensagensDeErro(erros) {
 
         let itemDoErro = document.createElement("li");
 
-        itemDoErro.setAttribute('id', "mensagem-erro")
+        itemDoErro.setAttribute('class', "mensagem-erro")
         let paragrafroDoItemDoErro = document.createElement("p");
         paragrafroDoItemDoErro.textContent = erro;
-        paragrafroDoItemDoErro.setAttribute('id', "conteudo-erro");
+        paragrafroDoItemDoErro.setAttribute('class', "conteudo-erro");
 
         itemDoErro.appendChild(paragrafroDoItemDoErro);
 

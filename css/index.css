@@ -141,7 +141,7 @@ button:disabled {
 	color: white;
 }
 
-#mensagem-erro {
+.mensagem-erro {
 	border: solid 2px lightcoral;
 	border-radius: 5px;
 	padding: 10px;
@@ -149,7 +149,7 @@ button:disabled {
 	height: 0px auto;
 }
 
-#conteudo-erro {
+.conteudo-erro {
 	text-transform: uppercase;
 	text-align: justify;
 }
